@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="nav">
+          <img class="logo" src="./img/Logo.svg" alt="" />
+        </div>
+        <div class="nav">
+          <img class="search__magnifier" src="./img/лупа" alt="" />
+          <input
+            placeholder="Username, hashtag and story search "
+            type="text"
+          />
+        </div>
+        <div class="nav">
+          <button id="newpost">New Post</button>
+        </div>
+      </header>
+    </div>
+    <section>
+      <div class="block_left"></div>
+      <h2>POST'S</h2>
+      <div class="post_all"></div>
+    </section>
+    <!-- ! ============ Modal New Post ============= -->
+    <div id="block_newPost">
+      <div id="closePost">
+        <button>X</button>
+      </div>
+      <h3>Добавление нового поста</h3>
+      <input class="Inpimg" type="url" placeholder="Photo" />
+      <input class="Inptext" type="text" placeholder="Название" />
+      <button id="btn_add">Добавить</button>
+    </div>
+    <!-- ? ============ Modal New Post ============= -->
+    <!-- ! ================ Modal Edit Post ================= -->
+    <div class="edit-block">
+      <div class="closeEdit">
+        <button class="edit_close">X</button>
+      </div>
+      <h3>Изменения поста</h3>
+      <input type="text" class="edit_details" placeholder="Описание" />
+      <input type="url" class="edit_url" placeholder="URL изображения" />
+      <button class="edit_btn-save">Изменить</button>
+    </div>
+    <!-- ? ================ Modal Edit Post ================= -->
+    <script src="./main.js"></script>
+  </body>
+</html>

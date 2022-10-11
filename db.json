@@ -1,0 +1,39 @@
+{
+  "post": [
+    {
+      "details": "дерево",
+      "urlImg": "https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?w=2000",
+      "id": 1
+    },
+    {
+      "details": "человек",
+      "urlImg": "https://images.unsplash.com/photo-1517960413843-0aee8e2b3285?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80",
+      "id": 2
+    },
+    {
+      "details": "Олень",
+      "urlImg": "https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg",
+      "id": 3
+    },
+    {
+      "details": "закат и человек",
+      "urlImg": "https://www.pandasecurity.com/en/mediacenter/src/uploads/2013/11/pandasecurity-facebook-photo-privacy.jpg",
+      "id": 4
+    },
+    {
+      "details": "медуза",
+      "urlImg": "https://cdn.serif.com/affinity/img/photo/home/0121/og-photo-200120210858.jpg",
+      "id": 5
+    },
+    {
+      "details": "человек",
+      "urlImg": "https://img.paisawapas.com/ovz3vew9pw/2021/08/19122300/world-photography-day.jpg",
+      "id": 6
+    },
+    {
+      "details": "берег с домом",
+      "urlImg": "https://miro.medium.com/max/1400/1*ZdpBdyvqfb6qM1InKR2sQQ.png",
+      "id": 7
+    }
+  ]
+}
