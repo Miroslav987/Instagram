@@ -6,7 +6,7 @@ const API = "http://localhost:8000/post";
 let newPost = document.getElementById("newpost");
 // инпуты и кнопки для создания новых данных
 let blocknewPost = document.getElementById("block_newPost");
-let inpDetails = document.querySelector(".Inptext");
+let inpCategory = document.querySelector(".Inptext");
 let inpUrl = document.querySelector(".Inpimg");
 let btnAdd = document.getElementById("btn_add");
 let closePost = document.getElementById("closePost");
@@ -14,15 +14,15 @@ let closePost = document.getElementById("closePost");
 let postall = document.querySelector(".post_all");
 
 // инпуты и кнопки для редактирования
-let inpEditDetails = document.querySelector(".edit_details");
+let inpEditCategory = document.querySelector(".edit_category");
 let inpEditUrl = document.querySelector(".edit_url");
 let btnEditSave = document.querySelector(".edit_btn-save");
 let mainModal = document.querySelector(".edit-block");
 let btnEditClose = document.querySelector(".edit_close");
 
 //  инпут и переменная для поиска
-// let inpSearch = document.querySelector(".search-txt");
-// let searchValue = inpSearch.value;
+let inpSearch = document.querySelector(".inp_serch");
+let searchValue = inpSearch.value;
 
 // кнопки для пагинации
 let prevBtn = document.getElementById("prev-btn");
@@ -57,23 +57,23 @@ function createProduct(obj) {
 
 btnAdd.addEventListener("click", () => {
   // проверка на заполненность полей
-  if (!inpDetails.value.trim() || !inpUrl.value.trim()) {
+  if (!inpCategory.value.trim() || !inpUrl.value.trim()) {
     alert("Заполните поле");
     return;
   }
   let obj = {
-    details: inpDetails.value,
+    category: inpCategory.value,
     urlImg: inpUrl.value,
   };
   createProduct(obj);
-  inpDetails.value = "";
+  inpCategory.value = "";
   inpUrl.value = "";
   blocknewPost.style.display = "none";
 });
 // ? =========== Create End =============
 // // ! ============ Read Start ============
-function readProducts() {
-  fetch(`${API}`)
+function readPost() {
+  fetch(`${API}?q=${searchValue}&_limit=${currentPage}`)
     .then(res => res.json())
     .then(data => {
       postall.innerHTML = "";
@@ -96,36 +96,24 @@ function readProducts() {
         `;
       });
     });
-  pageTotal();
 }
 
-readProducts();
+readPost();
 // ? ============ Read End ============
 
 // ! ============ Delete Start ===========
-// todo вариант 1 для удаления
-// document.addEventListener("click", (e) => {
-//   let del_class = [...e.target.classList];
-//   if (del_class[0] === "read__del") {
-//     console.log(e.target.id);
-//     fetch(`${API}/${e.target.id}`, {
-//       method: "DELETE",
-//     }).then(() => readProducts());
-//   }
-// });
 
-// todo вариант 2 для удаления
 function deleteProduct(id) {
   fetch(`${API}/${id}`, {
     method: "DELETE",
-  }).then(() => readProducts());
+  }).then(() => readPost());
 }
 // ? ============ Delete End ===========
 
 // ! =============== Edit Sart ===========
-function editProduct(id, editedObj) {
+function editPost(id, editedObj) {
   // проверка на заполненность полей
-  if (!inpEditDetails.value.trim() || !inpEditUrl.value.trim()) {
+  if (!inpEditCategory.value.trim() || !inpEditUrl.value.trim()) {
     alert("Заполните поле");
     return;
   }
@@ -135,7 +123,7 @@ function editProduct(id, editedObj) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(editedObj),
-  }).then(() => readProducts());
+  }).then(() => readPost());
 }
 
 let editId = "";
@@ -144,7 +132,7 @@ function handleEditBtn(id) {
   fetch(`${API}/${id}`)
     .then(res => res.json())
     .then(productObj => {
-      inpEditDetails.value = productObj.details;
+      inpEditCategory.value = productObj.category;
       inpEditUrl.value = productObj.urlImg;
       editId = productObj.id;
     });
@@ -152,14 +140,15 @@ function handleEditBtn(id) {
 
 btnEditClose.addEventListener("click", () => {
   mainModal.style.display = "none";
+  console.log(1);
 });
 
 btnEditSave.addEventListener("click", () => {
   let editedObj = {
-    details: inpEditDetails.value,
+    category: inpEditCategory.value,
     urlImg: inpEditUrl.value,
   };
-  editProduct(editId, editedObj);
+  editPost(editId, editedObj);
   mainModal.style.display = "none";
 });
 // ? =============== Edit End ===========
@@ -167,36 +156,20 @@ btnEditSave.addEventListener("click", () => {
 // ! ============ Search Start ==========
 inpSearch.addEventListener("input", e => {
   searchValue = e.target.value;
-  readProducts();
+  readPost();
 });
 // ? ============ Search End ==========
 
 // ! ========== Paginate Start =========
-let countPage = 1;
-function pageTotal() {
-  fetch(`${API}?q=${searchValue}`)
-    .then(res => res.json())
-    .then(data => {
-      countPage = Math.ceil(data.length / 6);
-    });
-}
 
 prevBtn.addEventListener("click", () => {
   if (currentPage <= 1) return;
   currentPage--;
-  readProducts();
+  readPost();
 });
 nextBtn.addEventListener("click", () => {
-  if (currentPage >= countPage) return;
+  if (currentPage >= 100) return;
   currentPage++;
-  readProducts();
+  readPost();
 });
 // ? ========== Paginate End ==========
-
-// ! ========Filter Start =======
-form.addEventListener("change", e => {
-  // console.log(e.target.value);
-  category = e.target.value;
-  readProducts();
-});
-// ? ========Filter End =======

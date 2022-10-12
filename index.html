@@ -16,6 +16,7 @@
         <div class="nav">
           <img class="search__magnifier" src="./img/лупа" alt="" />
           <input
+            class="inp_serch"
             placeholder="Username, hashtag and story search "
             type="text"
           />
@@ -24,11 +25,29 @@
           <button id="newpost">New Post</button>
         </div>
       </header>
-    </div>
+      <div class="container">
+        <div class="blockPots">
+        <div class="block_left">
+          <p>Makers</p>
+          
+          <div id="avatar"><img src="data:image/png;base64,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" alt=""></div>
+        </div><h2>POST'S</h2>
+        <div class="post_all"></div>
+        <!-- ! ================  Pagination ================== -->
+        <div class="pagination">
+          <button id="prev-btn">
+            <img src="./img/left.png" alt="" />
+          </button>
+          <button id="next-btn">
+            <img src="./img/right.png" alt="" />
+          </button></div>
+        </div>
+        <!-- ? ================  Pagination ================== -->
+      </div>
     <section>
-      <div class="block_left"></div>
-      <h2>POST'S</h2>
-      <div class="post_all"></div>
+      
+        
+      
     </section>
     <!-- ! ============ Modal New Post ============= -->
     <div id="block_newPost">
@@ -47,7 +66,7 @@
         <button class="edit_close">X</button>
       </div>
       <h3>Изменения поста</h3>
-      <input type="text" class="edit_details" placeholder="Описание" />
+      <input type="text" class="edit_category" placeholder="Описание" />
       <input type="url" class="edit_url" placeholder="URL изображения" />
       <button class="edit_btn-save">Изменить</button>
     </div>
